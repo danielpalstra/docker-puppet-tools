@@ -7,9 +7,10 @@ services:
         - http_proxy
         - https_proxy
         - no_proxy
+        - uid=1000
     image: danielpalstra/puppet-tools:2015.3.3
     volumes:
-      - ${PWD}:/data    
+      - ${PWD}:/data
     entrypoint: puppet-lint
     command: --help
   r10k:

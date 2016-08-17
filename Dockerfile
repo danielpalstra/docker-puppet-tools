@@ -10,6 +10,11 @@ RUN apt-get update && apt-get install -y git && apt-get clean && \
     gem install -v $R10K_VERSION r10k && \
     gem install -v $PUPPETLINT_VERSION puppet-lint
 
-USER 1000
-VOLUME /data
+ARG uid=1000
+
+RUN mkdir /data && \
+    useradd -u $uid -d /data tool && \
+    chown $uid /data
+
+USER $uid
 WORKDIR /data
