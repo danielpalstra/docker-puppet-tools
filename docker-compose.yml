@@ -1,0 +1,29 @@
+version: '2'
+services:
+  puppet-lint:
+    build:
+      context: .
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    image: danielpalstra/puppet-tools:2015.3.3
+    volumes:
+      - ${PWD}:/data    
+    entrypoint: puppet-lint
+    command: --help
+  r10k:
+    image: danielpalstra/puppet-tools:2015.3.3
+    volumes:
+      - ${PWD}:/data
+    entrypoint: r10k
+    command: --help
+  puppet:
+    image: danielpalstra/puppet-tools:2015.3.3
+    entrypoint: puppet
+    command: help
+  bash:
+    image: danielpalstra/puppet-tools:2015.3.3
+    volumes:
+      - ${PWD}:/data
+    command: bash
